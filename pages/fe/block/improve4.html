@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>进阶篇：使用 mocha + web3.js + ganache 编写合约测试 | Web全栈技术笔记</title>
+    <meta name="description" content="Web技术笔记，记录前端的进阶之路">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.d20cb8b9.css" as="style"><link rel="preload" href="/assets/js/app.2c921ca0.js" as="script"><link rel="preload" href="/assets/js/2.29093f4e.js" as="script"><link rel="preload" href="/assets/js/16.33c76806.js" as="script"><link rel="prefetch" href="/assets/js/10.e7261647.js"><link rel="prefetch" href="/assets/js/11.3acb9245.js"><link rel="prefetch" href="/assets/js/12.30fa2830.js"><link rel="prefetch" href="/assets/js/13.f7f5633c.js"><link rel="prefetch" href="/assets/js/14.077d15bd.js"><link rel="prefetch" href="/assets/js/15.ca4c6dcf.js"><link rel="prefetch" href="/assets/js/17.c1d108fb.js"><link rel="prefetch" href="/assets/js/18.f2c74917.js"><link rel="prefetch" href="/assets/js/19.4d0677d6.js"><link rel="prefetch" href="/assets/js/20.05a49d49.js"><link rel="prefetch" href="/assets/js/21.303ca718.js"><link rel="prefetch" href="/assets/js/22.dd8c450d.js"><link rel="prefetch" href="/assets/js/23.c436f815.js"><link rel="prefetch" href="/assets/js/24.5817cae1.js"><link rel="prefetch" href="/assets/js/25.7640084e.js"><link rel="prefetch" href="/assets/js/26.6981ceda.js"><link rel="prefetch" href="/assets/js/27.d96b5401.js"><link rel="prefetch" href="/assets/js/28.7e5507ca.js"><link rel="prefetch" href="/assets/js/29.0486ec9e.js"><link rel="prefetch" href="/assets/js/3.5ee6df4b.js"><link rel="prefetch" href="/assets/js/30.0705fdc2.js"><link rel="prefetch" href="/assets/js/31.3e20c412.js"><link rel="prefetch" href="/assets/js/32.40154bdb.js"><link rel="prefetch" href="/assets/js/33.54042f7d.js"><link rel="prefetch" href="/assets/js/34.992a68b5.js"><link rel="prefetch" href="/assets/js/35.fe5d31f8.js"><link rel="prefetch" href="/assets/js/36.20985163.js"><link rel="prefetch" href="/assets/js/37.7e0e1be1.js"><link rel="prefetch" href="/assets/js/38.c81dfd87.js"><link rel="prefetch" href="/assets/js/39.799324c8.js"><link rel="prefetch" href="/assets/js/4.505f2474.js"><link rel="prefetch" href="/assets/js/40.4a8ca097.js"><link rel="prefetch" href="/assets/js/41.3bdce235.js"><link rel="prefetch" href="/assets/js/42.13fe7b3a.js"><link rel="prefetch" href="/assets/js/43.b51c1b2e.js"><link rel="prefetch" href="/assets/js/44.408a421f.js"><link rel="prefetch" href="/assets/js/45.63e44fa3.js"><link rel="prefetch" href="/assets/js/46.409b4b6a.js"><link rel="prefetch" href="/assets/js/47.e253242d.js"><link rel="prefetch" href="/assets/js/48.ba57127f.js"><link rel="prefetch" href="/assets/js/49.7637631e.js"><link rel="prefetch" href="/assets/js/5.5326fad8.js"><link rel="prefetch" href="/assets/js/50.5c4dae5f.js"><link rel="prefetch" href="/assets/js/51.5ced2ccf.js"><link rel="prefetch" href="/assets/js/52.0447cb17.js"><link rel="prefetch" href="/assets/js/53.bb22200a.js"><link rel="prefetch" href="/assets/js/54.cbb62dbb.js"><link rel="prefetch" href="/assets/js/55.951cd720.js"><link rel="prefetch" href="/assets/js/56.3026c904.js"><link rel="prefetch" href="/assets/js/57.925dacf9.js"><link rel="prefetch" href="/assets/js/58.32a50715.js"><link rel="prefetch" href="/assets/js/59.f1f9cb40.js"><link rel="prefetch" href="/assets/js/6.9c6dd834.js"><link rel="prefetch" href="/assets/js/60.be19c9ef.js"><link rel="prefetch" href="/assets/js/61.c84c312a.js"><link rel="prefetch" href="/assets/js/62.b2e36c2d.js"><link rel="prefetch" href="/assets/js/7.a22cca04.js"><link rel="prefetch" href="/assets/js/8.34ea0bd8.js"><link rel="prefetch" href="/assets/js/9.224ad97b.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.d20cb8b9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/favicon.ico" alt="Web全栈技术笔记" class="logo"> <span class="site-name can-hide">Web全栈技术笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="分类" class="dropdown-title"><span class="title">分类</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/fe/vue/" class="nav-link">Vue.js实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/webpack/" class="nav-link">玩转webpack4.0</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/chrome/" class="nav-link">浏览器工作原理与实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/block/introduce.html" class="nav-link">区块链开发入门</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/git/" class="nav-link">Git命令大全</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/PCAaron/PCAaron.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://www.cnblogs.com/aaron-pan/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客园
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="分类" class="dropdown-title"><span class="title">分类</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/fe/vue/" class="nav-link">Vue.js实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/webpack/" class="nav-link">玩转webpack4.0</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/chrome/" class="nav-link">浏览器工作原理与实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/block/introduce.html" class="nav-link">区块链开发入门</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/git/" class="nav-link">Git命令大全</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/PCAaron/PCAaron.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://www.cnblogs.com/aaron-pan/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客园
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>区块链开发简介</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/block/introduce.html" class="sidebar-link">什么是区块链？</a></li><li><a href="/pages/fe/block/history.html" class="sidebar-link">区块链发展史</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>区块链入门篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/block/beginner1.html" class="sidebar-link">区块链核心概念和原理</a></li><li><a href="/pages/fe/block/beginner2.html" class="sidebar-link">以太坊核心概念和原理</a></li><li><a href="/pages/fe/block/beginner3.html" class="sidebar-link">创建以太坊钱包</a></li><li><a href="/pages/fe/block/beginner4.html" class="sidebar-link">完成第一笔交易</a></li><li><a href="/pages/fe/block/beginner5.html" class="sidebar-link">深入理解以太坊中的交易</a></li><li><a href="/pages/fe/block/beginner6.html" class="sidebar-link">solidity</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>区块链进阶篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/block/improve1.html" class="sidebar-link">自建智能合约工作流</a></li><li><a href="/pages/fe/block/improve2.html" class="sidebar-link">编写智能合同编译脚本：compile</a></li><li><a href="/pages/fe/block/improve3.html" class="sidebar-link">智能合约部署脚本</a></li><li><a href="/pages/fe/block/improve4.html" class="active sidebar-link">使用mocha+web3.js+ganache编写合约测试</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/fe/block/improve4.html#ganache-cli" class="sidebar-link">ganache-cli</a></li><li class="sidebar-sub-header"><a href="/pages/fe/block/improve4.html#跑测试" class="sidebar-link">跑测试</a></li><li class="sidebar-sub-header"><a href="/pages/fe/block/improve4.html#测试截图：" class="sidebar-link">测试截图：</a></li><li class="sidebar-sub-header"><a href="/pages/fe/block/improve4.html#star-or-打赏" class="sidebar-link">star or 打赏</a></li></ul></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>区块链实战篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/block/project1.html" class="sidebar-link">ICO DApp 要解决什么问题</a></li><li><a href="/pages/fe/block/project2.html" class="sidebar-link">ICO 智能合约的数据结构和接口设计</a></li><li><a href="/pages/fe/block/project3.html" class="sidebar-link">ICO智能合约开发和Remix测试</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用-mocha-web3-js-ganache-编写合约测试"><a href="#使用-mocha-web3-js-ganache-编写合约测试" class="header-anchor">#</a> 使用 mocha + web3.js + ganache 编写合约测试</h1> <h2 id="ganache-cli"><a href="#ganache-cli" class="header-anchor">#</a> ganache-cli</h2> <blockquote><p>ganache-cli是以太坊节点仿真器软件ganache的命令行版本，就像是 Remix 中运行在内存中的 Javascript VM 测试网络，其方法调用、交易确认速度非常快，可以方便开发者快速进行以太坊DApp的开发与测试。
+而 ganache-cli 为 web3.js 提供了兼容的 provider，这样就可以通过 web3.js 把合约部署到 ganache-cli 提供的本地测试网络上，并且跟合约实例交互。</p></blockquote> <h2 id="跑测试"><a href="#跑测试" class="header-anchor">#</a> 跑测试</h2> <blockquote><p>测试时我们通常会把每次测试运行的环境隔离开，对应到智能合约测试，每次测试需要部署新的合约实例，然后针对新的实例做功能测试。
+测试内容：1.合约部署时传入的 brand 属性被正确存储；2.调用 setBrand 之后合约的 brand 属性被正确更新</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>
+const path=require('path')
+const assert=require('assert')
+const ganache=require('ganache-cli')
+const Web3=require('web3')
+
+//获取bytecode
+const contractPath=path.resolve(__dirname,'../compiled/Car.json')
+const {interface,bytecode}=require(contractPath)
+
+//配置provider
+const web3=new Web3(ganache.provider());
+
+let accounts;
+let contract;
+let initialBrand='AUDI';
+
+describe('contract',()=&gt;{
+    //跑单例时需要部署全新的合约实例，起隔离作用
+    beforeEach(async()=&gt;{
+        accounts= await web3.eth.getAccounts()
+        console.log('合约部署账户:'+accounts[0])
+
+        contract=await new web3.eth.Contract(JSON.parse(interface))
+            .deploy({data:bytecode,arguments:[initialBrand]})
+            .send({from:accounts[0],gas:'1000000'});
+        console.log('合约部署成功：',contract.options.address)
+    })
+    // 单元测试
+    it('deploy a contract',()=&gt;{
+        assert.ok(contract.options.address)
+    })
+
+    //测试：合约部署时传入的 brand 属性被正确存储
+    it('has initial brand',async()=&gt;{
+        //contract.methods.brand().call()，调用合约上的方法，通常是取数据，立即返回
+        const brand=await contract.methods.brand().call()
+        assert.equal(brand,initialBrand)
+    })
+
+    // 测试：调用 setBrand 之后合约的 brand 属性被正确更新
+    it('can change the brand',async()=&gt;{
+        const newBrand='BWM'
+        //contract.methods.setBrand('xxx').send()，对合约发起交易，通常是修改数据，返回的是交易 Hash
+        await contract.methods.setBrand(newBrand).send({from:accounts[0]})
+        const brand=await contract.methods.brand().call()
+        assert.equal(brand,newBrand)
+    })
+
+})
+
+
+
+
+
+</code></pre></div><h2 id="测试截图："><a href="#测试截图：" class="header-anchor">#</a> 测试截图：</h2> <p><img src="/images/jinjie5_1.png" alt="测试截图"></p> <h2 id="star-or-打赏"><a href="#star-or-打赏" class="header-anchor">#</a> star or 打赏</h2> <blockquote><p>Imtoken地址: 0x4a6Ac825993737a4f7F1ed12fcAc1b27e247c55A</p></blockquote> <blockquote><p>打赏码
+<img src="/wxzz.jpg" alt="赞助支持"></p></blockquote></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/pages/fe/block/improve3.html" class="prev">智能合约部署脚本</a></span> <span class="next"><a href="/pages/fe/block/project1.html">ICO DApp 要解决什么问题</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.2c921ca0.js" defer></script><script src="/assets/js/2.29093f4e.js" defer></script><script src="/assets/js/16.33c76806.js" defer></script>
+  </body>
+</html>

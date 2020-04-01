@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>运行webpack发生了什么？ | Web全栈技术笔记</title>
+    <meta name="description" content="Web技术笔记，记录前端的进阶之路">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.d20cb8b9.css" as="style"><link rel="preload" href="/assets/js/app.2c921ca0.js" as="script"><link rel="preload" href="/assets/js/2.29093f4e.js" as="script"><link rel="preload" href="/assets/js/54.cbb62dbb.js" as="script"><link rel="prefetch" href="/assets/js/10.e7261647.js"><link rel="prefetch" href="/assets/js/11.3acb9245.js"><link rel="prefetch" href="/assets/js/12.30fa2830.js"><link rel="prefetch" href="/assets/js/13.f7f5633c.js"><link rel="prefetch" href="/assets/js/14.077d15bd.js"><link rel="prefetch" href="/assets/js/15.ca4c6dcf.js"><link rel="prefetch" href="/assets/js/16.33c76806.js"><link rel="prefetch" href="/assets/js/17.c1d108fb.js"><link rel="prefetch" href="/assets/js/18.f2c74917.js"><link rel="prefetch" href="/assets/js/19.4d0677d6.js"><link rel="prefetch" href="/assets/js/20.05a49d49.js"><link rel="prefetch" href="/assets/js/21.303ca718.js"><link rel="prefetch" href="/assets/js/22.dd8c450d.js"><link rel="prefetch" href="/assets/js/23.c436f815.js"><link rel="prefetch" href="/assets/js/24.5817cae1.js"><link rel="prefetch" href="/assets/js/25.7640084e.js"><link rel="prefetch" href="/assets/js/26.6981ceda.js"><link rel="prefetch" href="/assets/js/27.d96b5401.js"><link rel="prefetch" href="/assets/js/28.7e5507ca.js"><link rel="prefetch" href="/assets/js/29.0486ec9e.js"><link rel="prefetch" href="/assets/js/3.5ee6df4b.js"><link rel="prefetch" href="/assets/js/30.0705fdc2.js"><link rel="prefetch" href="/assets/js/31.3e20c412.js"><link rel="prefetch" href="/assets/js/32.40154bdb.js"><link rel="prefetch" href="/assets/js/33.54042f7d.js"><link rel="prefetch" href="/assets/js/34.992a68b5.js"><link rel="prefetch" href="/assets/js/35.fe5d31f8.js"><link rel="prefetch" href="/assets/js/36.20985163.js"><link rel="prefetch" href="/assets/js/37.7e0e1be1.js"><link rel="prefetch" href="/assets/js/38.c81dfd87.js"><link rel="prefetch" href="/assets/js/39.799324c8.js"><link rel="prefetch" href="/assets/js/4.505f2474.js"><link rel="prefetch" href="/assets/js/40.4a8ca097.js"><link rel="prefetch" href="/assets/js/41.3bdce235.js"><link rel="prefetch" href="/assets/js/42.13fe7b3a.js"><link rel="prefetch" href="/assets/js/43.b51c1b2e.js"><link rel="prefetch" href="/assets/js/44.408a421f.js"><link rel="prefetch" href="/assets/js/45.63e44fa3.js"><link rel="prefetch" href="/assets/js/46.409b4b6a.js"><link rel="prefetch" href="/assets/js/47.e253242d.js"><link rel="prefetch" href="/assets/js/48.ba57127f.js"><link rel="prefetch" href="/assets/js/49.7637631e.js"><link rel="prefetch" href="/assets/js/5.5326fad8.js"><link rel="prefetch" href="/assets/js/50.5c4dae5f.js"><link rel="prefetch" href="/assets/js/51.5ced2ccf.js"><link rel="prefetch" href="/assets/js/52.0447cb17.js"><link rel="prefetch" href="/assets/js/53.bb22200a.js"><link rel="prefetch" href="/assets/js/55.951cd720.js"><link rel="prefetch" href="/assets/js/56.3026c904.js"><link rel="prefetch" href="/assets/js/57.925dacf9.js"><link rel="prefetch" href="/assets/js/58.32a50715.js"><link rel="prefetch" href="/assets/js/59.f1f9cb40.js"><link rel="prefetch" href="/assets/js/6.9c6dd834.js"><link rel="prefetch" href="/assets/js/60.be19c9ef.js"><link rel="prefetch" href="/assets/js/61.c84c312a.js"><link rel="prefetch" href="/assets/js/62.b2e36c2d.js"><link rel="prefetch" href="/assets/js/7.a22cca04.js"><link rel="prefetch" href="/assets/js/8.34ea0bd8.js"><link rel="prefetch" href="/assets/js/9.224ad97b.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.d20cb8b9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/favicon.ico" alt="Web全栈技术笔记" class="logo"> <span class="site-name can-hide">Web全栈技术笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="分类" class="dropdown-title"><span class="title">分类</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/fe/vue/" class="nav-link">Vue.js实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/webpack/" class="nav-link router-link-active">玩转webpack4.0</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/chrome/" class="nav-link">浏览器工作原理与实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/block/introduce.html" class="nav-link">区块链开发入门</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/git/" class="nav-link">Git命令大全</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/PCAaron/PCAaron.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://www.cnblogs.com/aaron-pan/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客园
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="分类" class="dropdown-title"><span class="title">分类</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/fe/vue/" class="nav-link">Vue.js实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/webpack/" class="nav-link router-link-active">玩转webpack4.0</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/chrome/" class="nav-link">浏览器工作原理与实战</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/block/introduce.html" class="nav-link">区块链开发入门</a></li><li class="dropdown-item"><!----> <a href="/pages/fe/git/" class="nav-link">Git命令大全</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/PCAaron/PCAaron.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://www.cnblogs.com/aaron-pan/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  博客园
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>webpack导读</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/webpack/" class="sidebar-link">Webpack导读</a></li><li><a href="/pages/fe/webpack/history.html" class="sidebar-link">webpack与构建发展史</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>webpack基础篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/webpack/basic.html" class="sidebar-link">webpack的基本用法：核心概念</a></li><li><a href="/pages/fe/webpack/basicUsage.html" class="sidebar-link">webpack的基本用法：常用配置</a></li><li><a href="/pages/fe/webpack/improve.html" class="sidebar-link">webpack的进阶用法（一）</a></li><li><a href="/pages/fe/webpack/improveMore.html" class="sidebar-link">webpack的进阶用法（二）</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>webpack进阶篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/webpack/config.html" class="sidebar-link">可维护的webpack构建配置</a></li><li><a href="/pages/fe/webpack/optimize.html" class="sidebar-link">webpack构建速度及体积优化</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>webpack原理篇</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/webpack/principle.html" class="active sidebar-link">运行webpack发生了什么？</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/fe/webpack/principle.html#查找webpack入口文件" class="sidebar-link">查找webpack入口文件</a></li><li class="sidebar-sub-header"><a href="/pages/fe/webpack/principle.html#分析webpack入口文件" class="sidebar-link">分析webpack入口文件</a></li><li class="sidebar-sub-header"><a href="/pages/fe/webpack/principle.html#webpack-cli工作流程" class="sidebar-link">webpack-cli工作流程</a></li><li class="sidebar-sub-header"><a href="/pages/fe/webpack/principle.html#推荐阅读" class="sidebar-link">推荐阅读</a></li></ul></li><li><a href="/pages/fe/webpack/nature.html" class="sidebar-link">webpack插件机制</a></li><li><a href="/pages/fe/webpack/flow.html" class="sidebar-link">webpack编译流程分析</a></li><li><a href="/pages/fe/webpack/webpack.html" class="sidebar-link">迷你webpack的实现</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>编写loader和plugin</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/fe/webpack/loader.html" class="sidebar-link">编写一个loader</a></li><li><a href="/pages/fe/webpack/plugin.html" class="sidebar-link">编写一个plugin</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="运行webpack发生了什么？"><a href="#运行webpack发生了什么？" class="header-anchor">#</a> 运行webpack发生了什么？</h1> <h2 id="查找webpack入口文件"><a href="#查找webpack入口文件" class="header-anchor">#</a> 查找webpack入口文件</h2> <p>通过npm scripts运行webpack时候，npm其实是通过让命令行工具进入node_modules/.bin目录
+查找是否存在webpack.cmd或者webpack.sh文件，如果存在就执行，不存在则抛出错误。<br>
+node_modules/bin目录下有这个命令，则如果局部安装依赖，则需要在依赖配置package.json中指定bin字段，
+所以实际查找的入口文件就是 node_modules/webpack/bin/webpack.js。</p> <h2 id="分析webpack入口文件"><a href="#分析webpack入口文件" class="header-anchor">#</a> 分析webpack入口文件</h2> <p>/node_modules/webpack/bin/webpack.js</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>#<span class="token operator">!</span><span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>env node
+
+<span class="token comment">// @ts-ignore</span>
+process<span class="token punctuation">.</span>exitCode <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @param {string} command process to run
+ * @param {string[]} args commandline arguments
+ * @returns {Promise&lt;void&gt;} promise
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">runCommand</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">command<span class="token punctuation">,</span> args</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> cp <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;child_process&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		<span class="token keyword">const</span> executedCommand <span class="token operator">=</span> cp<span class="token punctuation">.</span><span class="token function">spawn</span><span class="token punctuation">(</span>command<span class="token punctuation">,</span> args<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+			stdio<span class="token punctuation">:</span> <span class="token string">&quot;inherit&quot;</span><span class="token punctuation">,</span>
+			shell<span class="token punctuation">:</span> <span class="token boolean">true</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		executedCommand<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;error&quot;</span><span class="token punctuation">,</span> <span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+			<span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		executedCommand<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;exit&quot;</span><span class="token punctuation">,</span> <span class="token parameter">code</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>code <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+				<span class="token function">reject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @param {string} packageName name of the package
+ * @returns {boolean} is the package installed?
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">isInstalled</span> <span class="token operator">=</span> <span class="token parameter">packageName</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		require<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>packageName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @typedef {Object} CliOption
+ * @property {string} name display name
+ * @property {string} package npm package name
+ * @property {string} binName name of the executable file
+ * @property {string} alias shortcut for choice
+ * @property {boolean} installed currently installed?
+ * @property {boolean} recommended is recommended
+ * @property {string} url homepage
+ * @property {string} description description
+ */</span>
+
+<span class="token comment">/** @type {CliOption[]} */</span>
+<span class="token keyword">const</span> CLIs <span class="token operator">=</span> <span class="token punctuation">[</span>
+	<span class="token punctuation">{</span>
+		name<span class="token punctuation">:</span> <span class="token string">&quot;webpack-cli&quot;</span><span class="token punctuation">,</span>
+		<span class="token keyword">package</span><span class="token punctuation">:</span> <span class="token string">&quot;webpack-cli&quot;</span><span class="token punctuation">,</span>
+		binName<span class="token punctuation">:</span> <span class="token string">&quot;webpack-cli&quot;</span><span class="token punctuation">,</span>
+		alias<span class="token punctuation">:</span> <span class="token string">&quot;cli&quot;</span><span class="token punctuation">,</span>
+		installed<span class="token punctuation">:</span> <span class="token function">isInstalled</span><span class="token punctuation">(</span><span class="token string">&quot;webpack-cli&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		recommended<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+		url<span class="token punctuation">:</span> <span class="token string">&quot;https://github.com/webpack/webpack-cli&quot;</span><span class="token punctuation">,</span>
+		description<span class="token punctuation">:</span> <span class="token string">&quot;The original webpack full-featured CLI.&quot;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">{</span>
+		name<span class="token punctuation">:</span> <span class="token string">&quot;webpack-command&quot;</span><span class="token punctuation">,</span>
+		<span class="token keyword">package</span><span class="token punctuation">:</span> <span class="token string">&quot;webpack-command&quot;</span><span class="token punctuation">,</span>
+		binName<span class="token punctuation">:</span> <span class="token string">&quot;webpack-command&quot;</span><span class="token punctuation">,</span>
+		alias<span class="token punctuation">:</span> <span class="token string">&quot;command&quot;</span><span class="token punctuation">,</span>
+		installed<span class="token punctuation">:</span> <span class="token function">isInstalled</span><span class="token punctuation">(</span><span class="token string">&quot;webpack-command&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		recommended<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		url<span class="token punctuation">:</span> <span class="token string">&quot;https://github.com/webpack-contrib/webpack-command&quot;</span><span class="token punctuation">,</span>
+		description<span class="token punctuation">:</span> <span class="token string">&quot;A lightweight, opinionated webpack CLI.&quot;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> installedClis <span class="token operator">=</span> CLIs<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">cli</span> <span class="token operator">=&gt;</span> cli<span class="token punctuation">.</span>installed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>installedClis<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;fs&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> readLine <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;readline&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">let</span> notify <span class="token operator">=</span>
+		<span class="token string">&quot;One CLI for webpack must be installed. These are recommended choices, delivered as separate packages:&quot;</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> item <span class="token keyword">of</span> CLIs<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>recommended<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			notify <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">\n - </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>item<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>item<span class="token punctuation">.</span>url<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)\n   </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>item<span class="token punctuation">.</span>description<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>notify<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">const</span> isYarn <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span><span class="token function">cwd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;yarn.lock&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">const</span> packageManager <span class="token operator">=</span> isYarn <span class="token operator">?</span> <span class="token string">&quot;yarn&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;npm&quot;</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> installOptions <span class="token operator">=</span> <span class="token punctuation">[</span>isYarn <span class="token operator">?</span> <span class="token string">&quot;add&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;install&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-D&quot;</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+	console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>
+		<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">We will use &quot;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>packageManager<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&quot; to install the CLI via &quot;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>packageManager<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>installOptions<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>
+			<span class="token string">&quot; &quot;</span>
+		<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&quot;.</span><span class="token template-punctuation string">`</span></span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">const</span> question <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Do you want to install 'webpack-cli' (yes/no): </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+	<span class="token keyword">const</span> questionInterface <span class="token operator">=</span> readLine<span class="token punctuation">.</span><span class="token function">createInterface</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+		input<span class="token punctuation">:</span> process<span class="token punctuation">.</span>stdin<span class="token punctuation">,</span>
+		output<span class="token punctuation">:</span> process<span class="token punctuation">.</span>stderr
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	questionInterface<span class="token punctuation">.</span><span class="token function">question</span><span class="token punctuation">(</span>question<span class="token punctuation">,</span> <span class="token parameter">answer</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		questionInterface<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token keyword">const</span> normalizedAnswer <span class="token operator">=</span> answer<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">&quot;y&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>normalizedAnswer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>
+				<span class="token string">&quot;You need to install 'webpack-cli' to use webpack via CLI.\n&quot;</span> <span class="token operator">+</span>
+					<span class="token string">&quot;You can also install the CLI manually.&quot;</span>
+			<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			process<span class="token punctuation">.</span>exitCode <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+			<span class="token keyword">return</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+
+		<span class="token keyword">const</span> packageName <span class="token operator">=</span> <span class="token string">&quot;webpack-cli&quot;</span><span class="token punctuation">;</span>
+
+		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+			<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Installing '</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>packageName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">' (running '</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>packageManager<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>installOptions<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>
+				<span class="token string">&quot; &quot;</span>
+			<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>packageName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">')...</span><span class="token template-punctuation string">`</span></span>
+		<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token function">runCommand</span><span class="token punctuation">(</span>packageManager<span class="token punctuation">,</span> installOptions<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>packageName<span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+				<span class="token function">require</span><span class="token punctuation">(</span>packageName<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+			<span class="token punctuation">}</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+				console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				process<span class="token punctuation">.</span>exitCode <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>installedClis<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;path&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> pkgPath <span class="token operator">=</span> require<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>installedClis<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>package<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/package.json</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> pkg <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>pkgPath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">require</span><span class="token punctuation">(</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>
+		path<span class="token punctuation">.</span><span class="token function">dirname</span><span class="token punctuation">(</span>pkgPath<span class="token punctuation">)</span><span class="token punctuation">,</span>
+		pkg<span class="token punctuation">.</span>bin<span class="token punctuation">[</span>installedClis<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>binName<span class="token punctuation">]</span>
+	<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+	console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span>
+		<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">You have installed </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>installedClis
+			<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> item<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>
+				<span class="token string">&quot; and &quot;</span>
+			<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> together. To work with the &quot;webpack&quot; command you need only one CLI package, please remove one of them or use them directly via their binary.</span><span class="token template-punctuation string">`</span></span>
+	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	process<span class="token punctuation">.</span>exitCode <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>分析webpack.js，可以了解到主要有几大部分：</p> <ul><li>process.exitCode = 0<br>
+正常执行返回，如果exitCode!=0，则为抛出对应错误；</li> <li>const runCommand = (command, args) =&gt; {...}<br>
+运行某个命令，并以promise形式返回；</li> <li>const isInstall = packageName =&gt; {...}<br>
+判断某个包是否安装</li> <li>const CLIs = [...]<br>
+webpack可用的脚手架：webpack-cli和webpack-command</li> <li>const installedClis = CLIs.filter(cli =&gt; cli.installed)<br>
+判断脚手架是否安装</li> <li>if (installedClis.length === 0) {...} else if (installedClis.length === 1) {...} else {...}<br>
+根据安装脚手架数量进行判断，如果没有安装则提示报错并提示安装流程；如果安装了一个运行安装的脚手架CLI；
+如果安装了两个就抛出错误</li></ul> <p>所以，npm scripts运行命令行，最终会通过webpack查找webpack-cli/webpack-command，并且执行CLI。</p> <h2 id="webpack-cli工作流程"><a href="#webpack-cli工作流程" class="header-anchor">#</a> webpack-cli工作流程</h2> <p>分析不需要编译的命令，例如init、info等命令并不会实例化webpack对象，
+webpack不需要经过构建编译的过程。</p> <p>/node_modules/webpack-cli/bin/cli.js</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">/** ./utils/constants ，webpack-cli提供的不需要编译的命令
+* NON_COMPILATION_ARGS = 
+*  [&quot;init&quot;,  创建一份webpack配置文件
+*  &quot;migrate&quot;, 进行webpack版本迁移
+*  &quot;serve&quot;,   运行webpack-serve
+*  &quot;generate-loader&quot;,  生成webpack loader代码
+*  &quot;generate-plugin&quot;,  生成webpack plugin代码
+*  &quot;info&quot;   返回与本地环境相关的信息
+];**/</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> <span class="token constant">NON_COMPILATION_ARGS</span> <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./utils/constants&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token constant">NON_COMPILATION_CMD</span> <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token parameter">arg</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>arg <span class="token operator">===</span> <span class="token string">&quot;serve&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			global<span class="token punctuation">.</span>process<span class="token punctuation">.</span>argv <span class="token operator">=</span> global<span class="token punctuation">.</span>process<span class="token punctuation">.</span>argv<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">a</span> <span class="token operator">=&gt;</span> a <span class="token operator">!==</span> <span class="token string">&quot;serve&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			process<span class="token punctuation">.</span>argv <span class="token operator">=</span> global<span class="token punctuation">.</span>process<span class="token punctuation">.</span>argv<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">return</span> <span class="token constant">NON_COMPILATION_ARGS</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token parameter">a</span> <span class="token operator">=&gt;</span> a <span class="token operator">===</span> arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">NON_COMPILATION_CMD</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">/**
+* // ./utils/prompt-command
+* module.exports = function promptForInstallation(packages, ...args) {
+* 	// 查找node_modules下是否有@webpack-cli下的包名
+* 	const nameOfPackage = &quot;@webpack-cli/&quot; + packages;
+* 	let packageIsInstalled = false;
+* 	let pathForCmd;
+* 	// 如果存在
+* 	try {
+* 		...
+*         // 如果不存在当前项目下，则通过全局的依赖包查找返回完整路径
+* 		if (!fs.existsSync(pathForCmd)) {...} else {
+* 			// 否则在当前依赖包查找返回完整路径
+* 			...
+* 		}
+* 		packageIsInstalled = true;
+* 	} catch (err) {
+* 		packageIsInstalled = false;
+* 	}
+* 	// 如果不存在则提示并提供选择安装
+* 	if (!packageIsInstalled) {...} else {
+* 		return runWhenInstalled(packages, pathForCmd, ...args);
+* 	}
+* };
+* 
+* */</span>    
+		<span class="token keyword">return</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./utils/prompt-command&quot;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token constant">NON_COMPILATION_CMD</span><span class="token punctuation">,</span> <span class="token operator">...</span>process<span class="token punctuation">.</span>argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+</code></pre></div><p>引入<a href="https://github.com/yargs/yargs" target="_blank" rel="noopener noreferrer">yargs<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，对命令行进行定制</p> <p>设置参数分组，将命令划分为九类：</p> <ul><li>Config options:配置相关参数（文件名称、运行环境等）</li> <li>Basic options:基础参数（entry设置、debug模式设置、watch监听设置、devtool设置）</li> <li>Module options:模块参数，给loader设置扩展</li> <li>Output options:输出参数（输出路径、输出文件名称）</li> <li>Advanced options:高级用法（记录设置、缓存设置、监听频率、bail等）</li> <li>Resolving options:解析参数（alias和解析的文件后缀设置）</li> <li>Optimizing options:优化参数</li> <li>Stats options:统计参数</li> <li>options：通用参数(帮助命令、版本信息等)</li></ul> <p><img src="/webpack/yargs.png" alt="yargs"></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// /node_modules/webpack-cli/bin/cli.js </span>
+	<span class="token keyword">const</span> yargs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;yargs&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">usage</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">webpack-cli </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;../package.json&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>version<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+
+// 配置提示信息
+Usage: webpack-cli [options]
+       webpack-cli [options] --entry &lt;entry&gt; --output &lt;output&gt;
+       webpack-cli [options] &lt;entries...&gt; --output &lt;output&gt;
+       webpack-cli &lt;command&gt; [options]
+
+For more information, see https://webpack.js.org/api/cli/.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+* const {
+* 	CONFIG_GROUP, Config options:配置相关参数（文件名称、运行环境等）
+* 	BASIC_GROUP, Basic options:基础参数（entry设置、debug模式设置、watch监听设置、devtool设置）
+* 	MODULE_GROUP, Module options:模块参数，给loader设置扩展
+* 	OUTPUT_GROUP, Output options:输出参数（输出路径、输出文件名称）
+* 	ADVANCED_GROUP, Advanced options:高级用法（记录设置、缓存设置、监听频率、bail等）
+* 	RESOLVE_GROUP, Resolving options:解析参数（alias和解析的文件后缀设置）
+* 	OPTIMIZE_GROUP, Optimizing options:优化参数
+* 	DISPLAY_GROUP Stats options:统计参数
+* } = GROUPS;
+*  ./config/config-yargs ,定义了一些基本信息help、version和options输入的一些命令
+*  module.exports = function(yargs) {
+*  	yargs
+*  		.help(&quot;help&quot;)
+*  		.alias(&quot;help&quot;, &quot;h&quot;)
+*  		.version()
+*  		.alias(&quot;version&quot;, &quot;v&quot;)
+*  		.options({
+*  			config: {
+*  				type: &quot;string&quot;,
+*  				describe: &quot;Path to the config file&quot;,
+*  				group: CONFIG_GROUP, // 分组信息
+*  				defaultDescription: &quot;webpack.config.js or webpackfile.js&quot;,
+*  				requiresArg: true
+*  			},
+*  			...
+*  		});
+*  };
+*  
+*  
+* */</span>
+	<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./config/config-yargs&quot;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>yargs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>分析命令行参数，对各个参数进行转换，组成编译配置项<br>
+引用webpack，根据配置项进行编译和构建</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// /node_modules/webpack-cli/bin/cli.js </span>
+<span class="token comment">// 对命令行参数进行解析</span>
+yargs<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>argv<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> argv<span class="token punctuation">,</span> output</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span>
+		<span class="token comment">// 定义options输入参数，传递给webpack，webpack-cli会从两处修改options</span>
+		<span class="token comment">// 第一处是webpack.config.js配置文件</span>
+		<span class="token comment">// 第二处是命令行中设置的参数</span>
+		<span class="token keyword">let</span> options<span class="token punctuation">;</span>
+		<span class="token keyword">try</span> <span class="token punctuation">{</span>
+			<span class="token comment">// 组装options，转换为webpack可识别的参数</span>
+			options <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./utils/convert-argv&quot;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		    <span class="token comment">// 如果报错则抛出错误</span>
+			<span class="token operator">...</span>
+			<span class="token keyword">return</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+
+		<span class="token comment">/**
+		 * When --silent flag is present, an object with a no-op write method is
+		 * used in place of process.stout
+		 */</span>
+        <span class="token operator">...</span>
+		<span class="token comment">// 判断配置参数在对象上是否存在</span>
+		<span class="token keyword">function</span> <span class="token function">ifArg</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> fn<span class="token punctuation">,</span> init</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>init<span class="token punctuation">)</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				argv<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> argv<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token string">&quot;undefined&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>init<span class="token punctuation">)</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token function">fn</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+
+		<span class="token comment">// 将组装的options传递进去</span>
+		<span class="token keyword">function</span> <span class="token function">processOptions</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token operator">...</span>
+			<span class="token comment">// 定义输出对象，webpack在输出时候就会读取outputOptions进而做相应的处理</span>
+			<span class="token keyword">let</span> outputOptions <span class="token operator">=</span> options<span class="token punctuation">.</span>stats<span class="token punctuation">;</span>
+			<span class="token operator">...</span>
+
+			<span class="token function">ifArg</span><span class="token punctuation">(</span><span class="token string">&quot;display&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">preset</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				outputOptions <span class="token operator">=</span> <span class="token function">statsPresetToOptions</span><span class="token punctuation">(</span>preset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token operator">...</span>
+			<span class="token comment">// 引入webpack</span>
+			<span class="token keyword">const</span> webpack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;webpack&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">let</span> lastHash <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+			<span class="token keyword">let</span> compiler<span class="token punctuation">;</span>
+			<span class="token keyword">try</span> <span class="token punctuation">{</span>
+				<span class="token comment">// 将组装完成的options传递给webpack，返回compiler对象</span>
+				compiler <span class="token operator">=</span> <span class="token function">webpack</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token comment">//错误抛出</span>
+                <span class="token operator">...</span>
+				<span class="token keyword">throw</span> err<span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+			<span class="token operator">...</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>outputOptions<span class="token punctuation">.</span>infoVerbosity <span class="token operator">===</span> <span class="token string">&quot;verbose&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>argv<span class="token punctuation">.</span>w<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>watchRun<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">&quot;WebpackInfo&quot;</span><span class="token punctuation">,</span> <span class="token parameter">compilation</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+						<span class="token keyword">const</span> compilationName <span class="token operator">=</span> compilation<span class="token punctuation">.</span>name <span class="token operator">?</span> compilation<span class="token punctuation">.</span>name <span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+						console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;\nCompilation &quot;</span> <span class="token operator">+</span> compilationName <span class="token operator">+</span> <span class="token string">&quot; starting…\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+					compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>beforeRun<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">&quot;WebpackInfo&quot;</span><span class="token punctuation">,</span> <span class="token parameter">compilation</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+						<span class="token keyword">const</span> compilationName <span class="token operator">=</span> compilation<span class="token punctuation">.</span>name <span class="token operator">?</span> compilation<span class="token punctuation">.</span>name <span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+						console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;\nCompilation &quot;</span> <span class="token operator">+</span> compilationName <span class="token operator">+</span> <span class="token string">&quot; starting…\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span>
+				compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>done<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">&quot;WebpackInfo&quot;</span><span class="token punctuation">,</span> <span class="token parameter">compilation</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+					<span class="token keyword">const</span> compilationName <span class="token operator">=</span> compilation<span class="token punctuation">.</span>name <span class="token operator">?</span> compilation<span class="token punctuation">.</span>name <span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+					console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;\nCompilation &quot;</span> <span class="token operator">+</span> compilationName <span class="token operator">+</span> <span class="token string">&quot; finished\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+
+			<span class="token comment">//完成后，compiler回调</span>
+			<span class="token keyword">function</span> <span class="token function">compilerCallback</span><span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> stats</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			    <span class="token comment">//日志打印/错误抛出</span>
+			    <span class="token operator">...</span>
+			<span class="token punctuation">}</span>
+			<span class="token comment">// 如果设置watch，则以watch方式运行compiler.watch</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>firstOptions<span class="token punctuation">.</span>watch <span class="token operator">||</span> options<span class="token punctuation">.</span>watch<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">const</span> watchOptions <span class="token operator">=</span>
+					firstOptions<span class="token punctuation">.</span>watchOptions <span class="token operator">||</span> options<span class="token punctuation">.</span>watchOptions <span class="token operator">||</span> firstOptions<span class="token punctuation">.</span>watch <span class="token operator">||</span> options<span class="token punctuation">.</span>watch <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>watchOptions<span class="token punctuation">.</span>stdin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					process<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">&quot;end&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">_</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+						process<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// eslint-disable-line</span>
+					<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					process<span class="token punctuation">.</span>stdin<span class="token punctuation">.</span><span class="token function">resume</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token punctuation">}</span>
+				compiler<span class="token punctuation">.</span><span class="token function">watch</span><span class="token punctuation">(</span>watchOptions<span class="token punctuation">,</span> compilerCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>outputOptions<span class="token punctuation">.</span>infoVerbosity <span class="token operator">!==</span> <span class="token string">&quot;none&quot;</span><span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;\nwebpack is watching the files…\n&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+			    <span class="token comment">// 否则以compiler.run运行构建</span>
+				compiler<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> stats</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+					<span class="token keyword">if</span> <span class="token punctuation">(</span>compiler<span class="token punctuation">.</span>close<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+						compiler<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token parameter">err2</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+							<span class="token function">compilerCallback</span><span class="token punctuation">(</span>err <span class="token operator">||</span> err2<span class="token punctuation">,</span> stats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+						<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+						<span class="token function">compilerCallback</span><span class="token punctuation">(</span>err<span class="token punctuation">,</span> stats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token punctuation">}</span>
+				<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+		<span class="token function">processOptions</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>所以，webpack-cli执行的结果就是对配置文件和命令行参数进行转换，最终生成配置选项参数options。
+然后根据配置参数实例化webpack对象，执行构建流程。</p> <h2 id="推荐阅读"><a href="#推荐阅读" class="header-anchor">#</a> 推荐阅读</h2> <p>npm scripts使用指南：<a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="noopener noreferrer">http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/pages/fe/webpack/optimize.html" class="prev">webpack构建速度及体积优化</a></span> <span class="next"><a href="/pages/fe/webpack/nature.html">webpack插件机制</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.2c921ca0.js" defer></script><script src="/assets/js/2.29093f4e.js" defer></script><script src="/assets/js/54.cbb62dbb.js" defer></script>
+  </body>
+</html>
